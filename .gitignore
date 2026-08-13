@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Environment variables
+.env
+.env.production
+.env.local
+
+# Excluded by user request
+Design/
+Documents/
+supabase_schema.sql
+
+# Temporary files
+*.timestamp-*.mjs
+.DS_Store
+Thumbs.db

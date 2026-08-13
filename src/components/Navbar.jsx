@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import AuthModal from './AuthModal'
 
 export default function Navbar() {
-  const { user, signOut } = useAuth()
+  const { user, isAdmin, signOut } = useAuth()
   const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [authModalOpen, setAuthModalOpen] = useState(false)
@@ -92,6 +92,19 @@ export default function Navbar() {
                 </Link>
               </>
             )}
+
+            {/* Admin Dashboard Link for Admin User */}
+            {user && isAdmin && (
+              <Link
+                to="/admin"
+                className={`transition-all px-3 py-1.5 rounded-lg border border-red-500/40 text-red-400 font-bold flex items-center gap-1 ${
+                  isActive('/admin') ? 'bg-red-600 text-white shadow-sm' : 'bg-red-950/40 hover:bg-red-900/60'
+                }`}
+              >
+                <span className="material-symbols-outlined text-sm">admin_panel_settings</span>
+                <span>Admin Panel</span>
+              </Link>
+            )}
           </nav>
 
           {/* Right Action Items */}
@@ -169,13 +182,17 @@ export default function Navbar() {
             <Link to="/explore" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Explore</Link>
             <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">About</Link>
             <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Contact</Link>
-            {user ? (
+            {user && (
               <>
                 <Link to="/my-projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">My Projects</Link>
                 <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Profile</Link>
+                {isAdmin && (
+                  <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-red-400 font-bold">Admin Panel</Link>
+                )}
                 <button onClick={() => { signOut(); setMobileMenuOpen(false); }} className="block w-full text-left py-2 text-red-400">Sign Out</button>
               </>
-            ) : (
+            )}
+            {!user && (
               <div className="pt-2 flex flex-col gap-2">
                 <button onClick={() => openAuth('signin')} className="w-full py-2 text-center text-slate-200 bg-slate-900 border border-slate-800 rounded-lg">Sign In</button>
                 <button onClick={() => openAuth('signup')} className="w-full py-2 text-center text-white bg-primary-container rounded-lg font-bold">Sign Up</button>

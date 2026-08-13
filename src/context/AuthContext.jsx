@@ -6,10 +6,29 @@ const AuthContext = createContext(null)
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [session, setSession] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
 
+  const checkAdminStatus = async (userId) => {
+    if (!userId) {
+      setIsAdmin(false)
+      return
+    }
+    try {
+      const { data } = await supabase
+        .from('profiles')
+        .select('is_admin')
+        .eq('id', userId)
+        .single()
+      
+      setIsAdmin(data?.is_admin === true)
+    } catch (err) {
+      console.error('Error checking admin status:', err.message)
+      setIsAdmin(false)
+    }
+  }
+
   useEffect(() => {
-    // Get initial session with fallback to getUser()
     const initializeAuth = async () => {
       try {
         const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession()
@@ -18,10 +37,13 @@ export const AuthProvider = ({ children }) => {
         if (currentSession) {
           setSession(currentSession)
           setUser(currentSession.user)
+          await checkAdminStatus(currentSession.user.id)
         } else {
-          // Fallback: verify user directly from Supabase server
           const { data: { user: currentUser } } = await supabase.auth.getUser()
           setUser(currentUser ?? null)
+          if (currentUser) {
+            await checkAdminStatus(currentUser.id)
+          }
         }
       } catch (error) {
         console.error('Error initializing auth session:', error.message)
@@ -32,10 +54,14 @@ export const AuthProvider = ({ children }) => {
 
     initializeAuth()
 
-    // Listen for auth state changes (login, logout, token refresh, password recovery)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
       setSession(currentSession)
       setUser(currentSession?.user ?? null)
+      if (currentSession?.user) {
+        await checkAdminStatus(currentSession.user.id)
+      } else {
+        setIsAdmin(false)
+      }
       setLoading(false)
     })
 
@@ -44,7 +70,6 @@ export const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  // Sign Up function
   const signUp = async ({ email, password, fullName }) => {
     setLoading(true)
     try {
@@ -75,15 +100,19 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  // Sign In function
   const signIn = async ({ email, password }) => {
     setLoading(true)
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.signInWithPassword({
         email,
         password,
       })
       if (error) throw error
+
+      if (data?.user) {
+        await checkAdminStatus(data.user.id)
+      }
+
       return { data, error: null }
     } catch (error) {
       return { data: null, error }
@@ -92,7 +121,6 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  // Sign Out function
   const signOut = async () => {
     setLoading(true)
     try {
@@ -100,6 +128,7 @@ export const AuthProvider = ({ children }) => {
       if (error) throw error
       setUser(null)
       setSession(null)
+      setIsAdmin(false)
     } catch (error) {
       console.error('Error signing out:', error.message)
     } finally {
@@ -110,10 +139,12 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     session,
+    isAdmin,
     loading,
     signUp,
     signIn,
     signOut,
+    refreshAdminStatus: () => user && checkAdminStatus(user.id),
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

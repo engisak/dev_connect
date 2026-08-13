@@ -5,6 +5,7 @@ import { ProjectProvider } from '../context/ProjectContext'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ProtectedRoute from './ProtectedRoute'
+import AdminRoute from './AdminRoute'
 
 import Home from '../pages/Home'
 import Explore from '../pages/Explore'
@@ -14,6 +15,7 @@ import Profile from '../pages/Profile'
 import PublicProfile from '../pages/PublicProfile'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
+import AdminDashboard from '../pages/AdminDashboard'
 
 export default function AppRoutes() {
   return (
@@ -32,7 +34,7 @@ export default function AppRoutes() {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 
-                {/* Protected Routes */}
+                {/* Protected User Routes */}
                 <Route
                   path="/my-projects"
                   element={
@@ -47,6 +49,16 @@ export default function AppRoutes() {
                     <ProtectedRoute>
                       <Profile />
                     </ProtectedRoute>
+                  }
+                />
+
+                {/* Protected Admin Dashboard Route */}
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminRoute>
+                      <AdminDashboard />
+                    </AdminRoute>
                   }
                 />
 

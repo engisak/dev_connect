@@ -13,6 +13,7 @@ import MyProjects from '../pages/MyProjects'
 import Profile from '../pages/Profile'
 import PublicProfile from '../pages/PublicProfile'
 import About from '../pages/About'
+import Contact from '../pages/Contact'
 
 export default function AppRoutes() {
   return (
@@ -29,6 +30,7 @@ export default function AppRoutes() {
                 <Route path="/developer/:userId" element={<PublicProfile />} />
                 <Route path="/profile/:userId" element={<PublicProfile />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 
                 {/* Protected Routes */}
                 <Route

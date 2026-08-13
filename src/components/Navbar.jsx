@@ -62,6 +62,15 @@ export default function Navbar() {
               About
             </Link>
 
+            <Link
+              to="/contact"
+              className={`transition-all px-3 py-1.5 rounded-lg ${
+                isActive('/contact') ? 'bg-primary-container text-white font-bold shadow-sm' : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+              }`}
+            >
+              Contact
+            </Link>
+
             {user && (
               <>
                 <Link
@@ -159,6 +168,7 @@ export default function Navbar() {
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Home</Link>
             <Link to="/explore" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Explore</Link>
             <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">About</Link>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Contact</Link>
             {user ? (
               <>
                 <Link to="/my-projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">My Projects</Link>

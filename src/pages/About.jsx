@@ -5,18 +5,13 @@ export default function About() {
   return (
     <div className="w-full bg-[#f7f9ff] py-12 md:py-16">
       <div className="max-w-[1280px] mx-auto px-4 md:px-10 space-y-16">
-        
+
         {/* Hero Header Section */}
         <section className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-container/30 bg-primary-container/10 text-primary font-bold text-xs shadow-xs">
-            <span className="material-symbols-outlined text-sm">rocket_launch</span>
-            <span>Empowering Developers Worldwide</span>
-          </div>
-          
           <h1 className="text-3xl md:text-5xl font-black text-[#171c21] tracking-tight leading-tight">
             Built for Software Engineers, by Software Engineers
           </h1>
-          
+
           <p className="text-base md:text-lg text-[#3f4851] leading-relaxed font-medium">
             DevConnect is a full-stack developer showcase platform designed to bridge the gap between building software applications and gaining peer visibility, constructive feedback, and networking opportunities.
           </p>

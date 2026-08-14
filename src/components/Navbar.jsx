@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 px-4 md:px-10 max-w-[1280px] mx-auto">
           
           {/* Logo */}
-          <Link to="/" className="text-white flex items-center gap-2 group">
+          <Link to="/" className="text-white flex items-center gap-2 group shrink-0">
             <span className="material-symbols-outlined text-primary-container text-2xl font-extrabold group-hover:scale-110 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>
               code_blocks
             </span>
@@ -34,7 +34,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-6 text-sm font-semibold">
+          <nav className="hidden md:flex items-center gap-2 lg:gap-4 text-sm font-semibold">
             <Link
               to="/"
               className={`transition-all px-3 py-1.5 rounded-lg ${
@@ -97,32 +97,34 @@ export default function Navbar() {
             {user && isAdmin && (
               <Link
                 to="/admin"
-                className={`transition-all px-3 py-1.5 rounded-lg border border-red-500/40 text-red-400 font-bold flex items-center gap-1 ${
-                  isActive('/admin') ? 'bg-red-600 text-white shadow-sm' : 'bg-red-950/40 hover:bg-red-900/60'
+                className={`transition-all px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 text-xs ${
+                  isActive('/admin')
+                    ? 'bg-rose-600 text-white shadow-sm'
+                    : 'text-rose-400 hover:text-rose-200 border border-rose-500/30 bg-rose-950/20 hover:bg-rose-900/40'
                 }`}
               >
-                <span className="material-symbols-outlined text-sm">admin_panel_settings</span>
+                <span className="material-symbols-outlined text-sm">shield</span>
                 <span>Admin Panel</span>
               </Link>
             )}
           </nav>
 
           {/* Right Action Items */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {/* Search Input Pill */}
-            <div className="hidden lg:flex items-center bg-slate-900 border border-slate-800 rounded-full px-4 py-1.5 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container transition-all">
+            <div className="hidden lg:flex items-center bg-slate-900 border border-slate-800 rounded-full px-3.5 py-1.5 focus-within:border-primary-container focus-within:ring-1 focus-within:ring-primary-container transition-all">
               <span className="material-symbols-outlined text-slate-400 text-sm">search</span>
               <input
                 type="text"
                 placeholder="Search projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border-none text-sm text-white focus:ring-0 placeholder:text-slate-500 ml-2 w-40 outline-none"
+                className="bg-transparent border-none text-sm text-white focus:ring-0 placeholder:text-slate-500 ml-2 w-32 xl:w-40 outline-none"
               />
             </div>
 
             {user ? (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 <Link to="/profile" className="flex items-center gap-2 group">
                   {user.user_metadata?.avatar_url ? (
                     <img
@@ -135,7 +137,7 @@ export default function Navbar() {
                       {(user.user_metadata?.full_name || user.email).charAt(0).toUpperCase()}
                     </div>
                   )}
-                  <span className="text-xs font-bold text-slate-200 hover:text-white hidden sm:inline">
+                  <span className="text-xs font-bold text-slate-200 hover:text-white hidden sm:inline max-w-[100px] truncate">
                     {user.user_metadata?.full_name || user.email.split('@')[0]}
                   </span>
                 </Link>
@@ -187,7 +189,7 @@ export default function Navbar() {
                 <Link to="/my-projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">My Projects</Link>
                 <Link to="/profile" onClick={() => setMobileMenuOpen(false)} className="block py-2 hover:text-primary-container">Profile</Link>
                 {isAdmin && (
-                  <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-red-400 font-bold">Admin Panel</Link>
+                  <Link to="/admin" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-rose-400 font-bold">Admin Panel</Link>
                 )}
                 <button onClick={() => { signOut(); setMobileMenuOpen(false); }} className="block w-full text-left py-2 text-red-400">Sign Out</button>
               </>

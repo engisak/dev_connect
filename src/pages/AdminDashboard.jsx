@@ -87,10 +87,6 @@ export default function AdminDashboard() {
         {/* Header */}
         <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-gray-200">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-700 border border-red-200 rounded-full text-xs font-bold mb-2">
-              <span className="material-symbols-outlined text-sm">admin_panel_settings</span>
-              <span>Admin Moderation Control</span>
-            </div>
             <h1 className="text-3xl font-extrabold text-[#171c21] tracking-tight">Admin Moderation Dashboard</h1>
             <p className="text-xs text-gray-500 font-medium mt-1">
               Review published repositories, moderate content, remove policy-violating posts, and manage platform users.

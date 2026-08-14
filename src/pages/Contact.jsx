@@ -33,7 +33,7 @@ export default function Contact() {
           <h1 className="text-3xl md:text-5xl font-black text-[#171c21] tracking-tight leading-tight">
             Get in Touch
           </h1>
-          <p className="text-base text-[#3f4851] font-medium leading-relaxed">
+          <p className="text-base md:text-lg text-[#3f4851] font-medium leading-relaxed">
             Have questions, feedback, or need mentorship support? Reach out to the DevConnect team and engineering community.
           </p>
         </section>
@@ -43,37 +43,37 @@ export default function Contact() {
           {/* Contact Info Cards (1 column on large screens) */}
           <div className="space-y-6">
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center font-bold">
-                <span className="material-symbols-outlined text-xl">mail</span>
+              <div className="w-11 h-11 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center font-bold">
+                <span className="material-symbols-outlined text-2xl">mail</span>
               </div>
-              <h3 className="text-base font-bold text-[#171c21]">Email Support</h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-normal">
+              <h3 className="text-lg font-bold text-[#171c21]">Email Support</h3>
+              <p className="text-sm text-gray-600 leading-relaxed font-normal">
                 For general platform inquiries, technical feedback, or collaboration opportunities:
               </p>
-              <a href="mailto:support@devconnect.io" className="block text-xs font-bold text-primary-container hover:underline">
+              <a href="mailto:support@devconnect.io" className="block text-sm font-bold text-primary-container hover:underline">
                 support@devconnect.io
               </a>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center font-bold">
-                <span className="material-symbols-outlined text-xl">groups</span>
+              <div className="w-11 h-11 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center font-bold">
+                <span className="material-symbols-outlined text-2xl">groups</span>
               </div>
-              <h3 className="text-base font-bold text-[#171c21]">Developer Community</h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-normal">
+              <h3 className="text-lg font-bold text-[#171c21]">Developer Community</h3>
+              <p className="text-sm text-gray-600 leading-relaxed font-normal">
                 Join our live Discord & Telegram server for instant code reviews and pair programming:
               </p>
-              <a href="https://github.com/engisak/dev_connect" target="_blank" rel="noreferrer" className="block text-xs font-bold text-primary-container hover:underline">
+              <a href="https://github.com/engisak/dev_connect" target="_blank" rel="noreferrer" className="block text-sm font-bold text-primary-container hover:underline">
                 discord.gg/devconnect-community
               </a>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center font-bold">
-                <span className="material-symbols-outlined text-xl">location_on</span>
+              <div className="w-11 h-11 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center font-bold">
+                <span className="material-symbols-outlined text-2xl">location_on</span>
               </div>
-              <h3 className="text-base font-bold text-[#171c21]">Mentorship Hub</h3>
-              <p className="text-xs text-gray-600 leading-relaxed font-normal">
+              <h3 className="text-lg font-bold text-[#171c21]">Mentorship Hub</h3>
+              <p className="text-sm text-gray-600 leading-relaxed font-normal">
                 Software Engineering Mentorship Headquarters & Code Review Lab.
               </p>
             </div>
@@ -82,64 +82,64 @@ export default function Contact() {
           {/* Contact Form (2 columns on large screens) */}
           <div className="lg:col-span-2 bg-white border border-gray-200 rounded-2xl p-6 md:p-10 shadow-sm space-y-6">
             <div className="border-b border-gray-100 pb-4">
-              <h2 className="text-2xl font-extrabold text-[#171c21] tracking-tight">Send Us a Message</h2>
-              <p className="text-xs text-gray-500 font-medium mt-1">We usually respond within 24 hours.</p>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#171c21] tracking-tight">Send Us a Message</h2>
+              <p className="text-sm text-gray-500 font-medium mt-1">We usually respond within 24 hours.</p>
             </div>
 
             {submitted && (
-              <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-xl font-semibold flex items-center gap-2">
-                <span className="material-symbols-outlined text-base">check_circle</span>
+              <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm rounded-xl font-semibold flex items-center gap-2">
+                <span className="material-symbols-outlined text-lg">check_circle</span>
                 <span>Thank you! Your message has been sent successfully. We will get back to you shortly.</span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5 text-sm">
+            <form onSubmit={handleSubmit} className="space-y-5 text-base">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-bold text-[#171c21] mb-1">Your Full Name <span className="text-primary-container">*</span></label>
+                  <label className="block text-sm font-bold text-[#171c21] mb-1.5">Your Full Name <span className="text-primary-container">*</span></label>
                   <input
                     type="text"
                     required
                     placeholder="John Doe"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3 text-[#171c21] font-semibold placeholder-gray-400 outline-none transition-all"
+                    className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3.5 text-[#171c21] text-sm font-semibold placeholder-gray-400 outline-none transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#171c21] mb-1">Email Address <span className="text-primary-container">*</span></label>
+                  <label className="block text-sm font-bold text-[#171c21] mb-1.5">Email Address <span className="text-primary-container">*</span></label>
                   <input
                     type="email"
                     required
                     placeholder="developer@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3 text-[#171c21] font-semibold placeholder-gray-400 outline-none transition-all"
+                    className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3.5 text-[#171c21] text-sm font-semibold placeholder-gray-400 outline-none transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#171c21] mb-1">Subject</label>
+                <label className="block text-sm font-bold text-[#171c21] mb-1.5">Subject</label>
                 <input
                   type="text"
                   placeholder="Platform Feedback / Mentorship Inquiry"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3 text-[#171c21] font-semibold placeholder-gray-400 outline-none transition-all"
+                  className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3.5 text-[#171c21] text-sm font-semibold placeholder-gray-400 outline-none transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#171c21] mb-1">Message <span className="text-primary-container">*</span></label>
+                <label className="block text-sm font-bold text-[#171c21] mb-1.5">Message <span className="text-primary-container">*</span></label>
                 <textarea
                   rows={5}
                   required
                   placeholder="Write your message or technical question here..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3 text-[#171c21] placeholder-gray-400 outline-none transition-all resize-none font-medium"
+                  className="w-full bg-white border border-gray-300 focus:border-primary-container focus:ring-1 focus:ring-primary-container rounded-xl p-3.5 text-[#171c21] text-sm placeholder-gray-400 outline-none transition-all resize-none font-medium"
                 />
               </div>
 
@@ -147,9 +147,9 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full sm:w-auto px-8 py-3.5 bg-primary-container hover:bg-sky-400 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 active:scale-95"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-primary-container hover:bg-sky-400 text-white font-bold text-sm rounded-xl shadow-md flex items-center justify-center gap-2 transition-all disabled:opacity-50 active:scale-95"
                 >
-                  <span className="material-symbols-outlined text-base">send</span>
+                  <span className="material-symbols-outlined text-lg">send</span>
                   <span>{sending ? 'Sending Message...' : 'Send Message'}</span>
                 </button>
               </div>
